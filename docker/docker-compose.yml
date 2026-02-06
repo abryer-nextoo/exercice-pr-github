@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./devfest2024_front
+    ports:
+      - "3000:3000"
+    environment:
+      - SERVER_IP=192.167.1.91
+    depends_on:
+      - backend
+    networks:
+      - front
+    restart: always
+
+  backend:
+    build: ./devfest2024_back
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+      - SPRING_DATASOURCE_USERNAME=compose-postgres
+      - SPRING_DATASOURCE_PASSWORD=compose-postgres
+    depends_on:
+      - db
+    networks:
+      - front
+      - back
+    restart: always
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: compose-postgres
+      POSTGRES_PASSWORD: compose-postgres
+      POSTGRES_DB: compose-postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - back
+    restart: always
+
+networks:
+  front:
+    name: front_network
+  back:
+    name: back_network
+

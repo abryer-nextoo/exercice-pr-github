@@ -1,0 +1,92 @@
+header {
+    width: 100%;
+    background-color: #354250;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#logo-header{
+    height: 56px;
+    width: 222px;
+}
+
+#addButton{
+    margin-right: 10px;
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    border-color: transparent;
+    background-color: #F9AD1F;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 50px;
+}
+
+#resetButton{
+    height: 40px;
+    width: 120px;
+    border-radius: 5px;
+    border-color: transparent;
+    background-color: #950000;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 50px;
+}
+
+#winnerButton{
+    margin-right: 10px;
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    border-color: transparent;
+    background-color: #F9AD1F;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 50px;
+}
+
+#table-select-filter{
+    background-color: white;
+    border-color: transparent;
+    font-size: 1em;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    padding: 0 20px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+}
+
+.navbar-links a:hover {
+    color: #F9AD1F;
+}

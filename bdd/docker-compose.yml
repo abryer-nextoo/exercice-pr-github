@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: compose-postgres
+      POSTGRES_PASSWORD: compose-postgres
+      POSTGRES_DB: compose-postgres
+    volumes:
+      - dsdc-bdd:/var/lib/postgresql/data
+volumes:
+  dsdc-bdd:

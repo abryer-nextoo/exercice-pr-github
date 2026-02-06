@@ -1,0 +1,12 @@
+@import "formStyle.css";
+@import "tableStyle.css";
+@import "header.css";
+@import "houseScore.css";
+@import "popup.css";
+
+body {
+    font-family: 'Arial', sans-serif;
+    padding-top: 80px;
+}
+
+

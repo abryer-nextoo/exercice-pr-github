@@ -1,0 +1,16 @@
+{
+  "name": "Ma App PWA",
+  "short_name": "MaApp",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icons/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}
+

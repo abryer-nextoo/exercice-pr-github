@@ -1,0 +1,38 @@
+#data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#data-table th, #data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#data-table th {
+    background-color: #F9AD1F;
+    text-align: center;
+    color: white;
+}
+
+#data-table td {
+    text-align: center;
+}
+
+#data-table td::first-letter{
+    text-transform: capitalize;
+}
+
+.pagination-button{
+    height: 30px;
+    width: 60px;
+    background-color: #354250;
+    color: white;
+    border-color: transparent;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+#pagination{
+    text-align: center;
+    margin-top: 10px;
+}

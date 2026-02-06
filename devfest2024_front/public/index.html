@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
+    <title>Nextoo DevFest2024</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img src="./asset/Blanc%20Orange.png" alt="logo nextoo" id="logo-header"/>
+            <div class="navbar-links" id="navbar-links">
+
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="./page/PageScore.html">Classement</a></li>
+                </ul>
+
+                <button id="addButton">Ajouter</button>
+                <button id="winnerButton">Tirage</button>
+                <button id="resetButton">Réinitialiser</button>
+
+            </div>
+        </nav>
+    </header>
+    <section>
+        <div id="house-ranking">
+            <div class="house-container">
+                <img id="front-img" src="./asset/frontEndHouse.png" class="house-img"/>
+                <h1>Front-End</h1>
+                <div><span id="front-score"></span> pts</div>
+            </div>
+            <div class="house-container">
+                <img id="back-img" src="./asset/backEndHouse.png" class="house-img"/>
+                <h1>Back-End</h1>
+                <div><span id="back-score"></span> pts</div>
+            </div>
+            <div class="house-container">
+                <img id="cicd-img" src="./asset/CICDHouse.png" class="house-img"/>
+                <h1>Cicd</h1>
+                <div><span id="cicd-score"></span> pts</div>
+            </div>
+            <div class="house-container">
+                <img id="mobile-img" src="./asset/mobile.png" class="house-img"/>
+                <h1>Mobile</h1>
+                <div><span id="mobile-score"></span> pts</div>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <form id="data-form">
+                    <div>
+                        <input class="form-input" placeholder="Téléphone" type="tel" id="phone" name="phone" required pattern="[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}" inputmode="numeric" maxlength="14">
+                    </div>
+                    <div>
+                        <input class="form-input" placeholder="Email" type="text" id="email" name="email" required maxlength="100">
+                    </div>
+                    <div>
+                        <input class="form-input" placeholder="Prénom" type="text" id="firstname" name="firstname" required maxlength="50">
+                    </div>
+                    <div>
+                        <input class="form-input" placeholder="Nom" type="text" id="lastname" name="lastname" required maxlength="50">
+                    </div>
+                    <div>
+                        <select class="form-input" id="house" name="house" required>
+                            <option value="" selected disabled>Maison</option>
+                            <option value="BACK">Back</option>
+                            <option value="FRONT">Front</option>
+                            <option value="CICD">CICD</option>
+                            <option value="MOBILE">Mobile</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input class="form-input" placeholder="Score" type="text" id="score" name="score" required maxlength="5">
+                    </div>
+                    <div>
+                        <div id="message"></div>
+                    </div>
+                    <button class="form-input submit-button" type="submit">Envoyer</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="custom-popup" class="custom-popup">
+            <div class="custom-popup-content">
+                <p>Êtes-vous sûr de vouloir changer votre score ?</p>
+                <div class="custom-popup-buttons">
+                    <button id="confirm-true">Oui</button>
+                    <button id="confirm-false">Non</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="custom-reset-popup" class="custom-popup">
+            <div class="custom-popup-content">
+                <p>Êtes-vous sûr de vouloir reset les scores ?</p>
+                <div class="custom-popup-buttons">
+                    <button id="confirm-reset-true">Oui</button>
+                    <button id="confirm-reset-false">Non</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="custom-winner-popup" class="custom-popup">
+            <div class="custom-popup-content">
+                <p>Les information du gagant sont : </p>
+                <p>
+                    <span class="user-info">Prénom : </span><span id="winner-firstname"></span>
+                </p>
+                <p>
+                    <span class="user-info">Nom : </span><span id="winner-lastname"></span>
+                </p>
+                <p>
+                    <span class="user-info">Téléphone : </span><span id="winner-phone"></span>
+                </p>
+                <p>
+                    <span class="user-info">Email : </span><span id="winner-email"></span>
+                </p>
+                <p>
+                    <span class="user-info">House : </span><span id="winner-house"></span>
+                </p>
+                <p>
+                    <span class="user-info">Score : </span><span id="winner-score"></span>
+                </p>
+                <div class="custom-winner-popup-buttons">
+                    <button id="confirm-winner-true">Retour</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="/script.js"></script>
+</body>
+</html>
+

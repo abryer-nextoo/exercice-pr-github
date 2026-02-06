@@ -1,0 +1,30 @@
+#house-ranking {
+    display: flex;
+    justify-content: space-around;
+    gap: 100px;
+    margin-top: 150px;
+
+}
+
+.house-container {
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    align-items: center; /* Center children horizontally */
+    text-align: center; /* Center text horizontally */
+    width: 200px; /* Adjust the width as needed */
+}
+
+.house-img{
+    width: 180px;
+    height: 180px;
+}
+
+/* Optional: Additional styling */
+.house-container h1 {
+    margin: 10px 0; /* Space between the title and the image/score */
+}
+
+.house-container span {
+    font-size: 1.5em; /* Adjust the font size of the score */
+    margin-top: 5px; /* Space between the score and the title */
+}
