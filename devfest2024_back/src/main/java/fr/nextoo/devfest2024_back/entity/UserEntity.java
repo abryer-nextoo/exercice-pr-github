@@ -1,10 +1,7 @@
 package fr.nextoo.devfest2024_back.entity;
 
 import fr.nextoo.devfest2024_back.enumeration.House;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,6 +34,19 @@ public class UserEntity {
 
     private int score;
 
-    public UserEntity(String id){
+    public UserEntity(String phone, String email, String firstname, String lastname, House house, Integer score) {
+        this.phone = phone;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.house = house;
+        this.score = score;
+    }
+
+    public void addPoints(int pointsToAdd) {
+        if (pointsToAdd < 0) {
+            throw new IllegalArgumentException("Cannot add negative points");
+        }
+        this.score += pointsToAdd;
     }
 }

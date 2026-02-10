@@ -1,15 +1,18 @@
 package fr.nextoo.devfest2024_back.controller;
 
-import fr.nextoo.devfest2024_back.entity.UserEntity;
+import fr.nextoo.devfest2024_back.dto.CreateUserDTO;
+import fr.nextoo.devfest2024_back.dto.UpdateScoreDTO;
+import fr.nextoo.devfest2024_back.dto.UserResponseDTO;
 import fr.nextoo.devfest2024_back.enumeration.House;
 import fr.nextoo.devfest2024_back.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -24,33 +27,54 @@ public class UsersController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<UserEntity>> getUsers(@RequestParam() int page) {
-        return new ResponseEntity<>(userService.getAllWithPage(page), HttpStatus.OK);
+    public ResponseEntity<Page<UserResponseDTO>> getUsers(
+            @RequestParam(defaultValue = "0") int page
+    ) {
+        Page<UserResponseDTO> users = userService.getUsers(page);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/score")
-    public ResponseEntity<Map<String,Integer>> getAllUsers() {
-        return new ResponseEntity<>(userService.getScores(), HttpStatus.OK);
+    public ResponseEntity<Map<House, Integer>> getScoresByHouse() {
+        Map<House, Integer> scores = userService.getScoresByHouse();
+        return ResponseEntity.ok(scores);
     }
 
     @GetMapping("/{house}")
-    public ResponseEntity<Page<UserEntity>> getUsersWithHouse(@RequestParam() int page, @PathVariable House house) {
-        return new ResponseEntity<>(userService.getAllWithHouse(page,house),HttpStatus.OK);
+    public ResponseEntity<Page<UserResponseDTO>> getUsersByHouse(
+            @RequestParam(defaultValue = "0") int page,
+            @PathVariable House house) {
+        Page<UserResponseDTO> users = userService.getUsersByHouse(page, house);
+        return ResponseEntity.ok(users);
     }
 
     @PostMapping
-    public ResponseEntity<UserEntity> postUser(@RequestBody UserEntity userEntity) {
-        return new ResponseEntity<>(userService.addUser(userEntity),HttpStatus.OK);
+    public ResponseEntity<UserResponseDTO> addUser(
+            @Valid @RequestBody CreateUserDTO createUserDTO
+    ) {
+        UserResponseDTO user = userService.addUser(createUserDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteUsers() {
-        userService.deleteAll();
-        return new ResponseEntity<>("Tous les participant sont suprimer", HttpStatus.OK);
+    @PatchMapping("/{userId}/score")
+    public ResponseEntity<UserResponseDTO> updateScore(
+            @PathVariable UUID userId,
+            @Valid @RequestBody UpdateScoreDTO updateScoreDto) {
+        UserResponseDTO user = userService.updateUserScore(userId, updateScoreDto);
+        return ResponseEntity.ok(user);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Map<String, String>> deleteAllUsers() {
+        userService.deleteAllUsers();
+        return ResponseEntity.ok(Map.of(
+                "message", "Tous les participants ont été supprimés"
+        ));
     }
 
     @GetMapping("/winner")
-    public ResponseEntity<UserEntity> getWinner() {
-        return new ResponseEntity<>(userService.findWinner(),HttpStatus.OK);
+    public ResponseEntity<UserResponseDTO> getWinner() {
+        UserResponseDTO winner = userService.findWinner();
+        return ResponseEntity.ok(winner);
     }
 }
