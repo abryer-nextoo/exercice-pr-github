@@ -4,7 +4,9 @@ import fr.nextoo.devfest2024_back.dto.CreateUserDTO;
 import fr.nextoo.devfest2024_back.dto.UpdateScoreDTO;
 import fr.nextoo.devfest2024_back.dto.UserResponseDTO;
 import fr.nextoo.devfest2024_back.enumeration.House;
+import fr.nextoo.devfest2024_back.service.ScoreService;
 import fr.nextoo.devfest2024_back.service.UserService;
+import fr.nextoo.devfest2024_back.service.WinnerSelectionService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -19,11 +21,17 @@ import java.util.UUID;
 public class UsersController {
 
     private final UserService userService;
+    private final ScoreService scoreService;
+    private final WinnerSelectionService winnerSelectionService;
 
     public UsersController(
-            final UserService userService
+            final UserService userService,
+            final ScoreService scoreService,
+            WinnerSelectionService winnerSelectionService
     ){
         this.userService = userService;
+        this.scoreService = scoreService;
+        this.winnerSelectionService = winnerSelectionService;
     }
 
     @GetMapping
@@ -36,7 +44,7 @@ public class UsersController {
 
     @GetMapping("/score")
     public ResponseEntity<Map<House, Integer>> getScoresByHouse() {
-        Map<House, Integer> scores = userService.getScoresByHouse();
+        Map<House, Integer> scores = scoreService.getScoresByHouse();
         return ResponseEntity.ok(scores);
     }
 
@@ -74,7 +82,7 @@ public class UsersController {
 
     @GetMapping("/winner")
     public ResponseEntity<UserResponseDTO> getWinner() {
-        UserResponseDTO winner = userService.findWinner();
+        UserResponseDTO winner = winnerSelectionService.selectRandomWinner();
         return ResponseEntity.ok(winner);
     }
 }
